@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "WineLocale 0.3 - CJK Launcher for Wine (cli)"
+echo "Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>"
+echo "Licensed under the GNU General Public License"
+echo "<http://www.gnu.org/copyleft/gpl.html>"
+echo "Uninstalling ..."
+echo "Removing /usr/local/share/wineloc"
+sudo rm -rf /usr/local/share/wineloc
+echo "Removing link ..."
+sudo rm /usr/local/bin/wineloc
+echo "All done!"
+echo "You will need to manually remove ~/.wineloc."

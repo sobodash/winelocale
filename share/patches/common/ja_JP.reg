@@ -1,0 +1,19 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="Kochi Gothic"
+"Fixedsys"="Kochi Gothic"
+"MS Gothic"="Kochi Gothic"
+"MS Mincho"="Kochi Mincho"
+"MS PGothic"="Kochi Gothic"
+"MS PMincho"="Kochi Mincho"
+"MS Sans Serif"="Kochi Gothic"
+"MS Shell Dlg"="Kochi Gothic"
+"MS Shell Dlg 2"="Kochi Gothic"
+"MS UI Gothic"="Kochi Gothic"
+"Tahoma"="AR PL ZenKai Uni"
+"Terminal"="Kochi Gothic"
+"Wingdings"="Winedings"

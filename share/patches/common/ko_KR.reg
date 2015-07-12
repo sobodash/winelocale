@@ -1,0 +1,18 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="Baekmuk Batang"
+"Batang"="Baekmuk Batang"
+"BatangChe"="Baekmuk Batang"
+"Dotum"="Baekmuk Dotum"
+"DotumChe"="Baekmuk Dotum"
+"Fixedsys"="Baekmuk Batang"
+"MS Sans Serif"="Baekmuk Batang"
+"MS Shell Dlg"="Baekmuk Batang"
+"MS Shell Dlg 2"="Baekmuk Batang"
+"Tahoma"="Baekmuk Batang"
+"Terminal"="Baekmuk Batang"
+"Wingdings"="Winedings"

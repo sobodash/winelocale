@@ -1,0 +1,16 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="Vera Sans YuanTi"
+"Fixedsys"="Vera Sans YuanTi Mono"
+"MS Sans Serif"="Vera Sans YuanTi"
+"MS Shell Dlg"="Vera Sans YuanTi"
+"MS Shell Dlg 2"="Vera Sans YuanTi"
+"SimHei"="Vera Sans YuanTi"
+"SimSun"="Vera Sans YuanTi"
+"Tahoma"="Vera Sans YuanTi"
+"Terminal"="Vera Sans YuanTi Mono"
+"Wingdings"="Winedings"

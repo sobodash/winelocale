@@ -1,0 +1,34 @@
+
+
+ WineLocale 0.3 - CJK Launcher for Wine (cli)
+ Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>
+ Licensed under the GNU General Public License
+ <http://www.gnu.org/copyleft/gpl.html>
+
+
+---
+
+ This folder is reserved for you to create your own custom font patches.
+
+ Copy the "custom" folder to a new folder an begin editing the included locale
+ files to change the fonts however you like. It is recommended you not directly
+ add new font lines to the file, otherwise, they will not be reverted when
+ unpatching after Wine terminates.
+
+ If you discover new fonts that need to be patches to guarantee function in
+ one of the supported locales, or you would like to see a new locale added,
+ please email Derrick Sobodash at <dsobodash@sina.com>.
+
+ If you want a new locale added, you should be prepared to supply:
+
+ 1. Which Windows fonts contain this locale's glyphs; don't say "Tahoma"
+ 2. Which Linux fonts contain this locale's glyphs
+ 3. A small application which uses this locale and can run in Wine
+
+---
+
+
+
+
+
+

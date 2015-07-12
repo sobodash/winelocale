@@ -1,0 +1,16 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="MingLiU"
+"Fixedsys"="MingLiU"
+"MingLiU"="MingLiU"
+"MS Sans Serif"="MingLiU"
+"MS Shell Dlg"="MingLiU"
+"MS Shell Dlg 2"="MingLiU"
+"PMingLiU"="MingLiU"
+"Tahoma"="Arial Unicode MS"
+"Terminal"="MingLiU"
+"Wingdings"="Winedings"

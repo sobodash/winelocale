@@ -1,0 +1,27 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="Bitstream Vera Sans"
+"Batang"=-
+"BatangChe"=-
+"Dotum"=-
+"DotumChe"=-
+"Fixedsys"=-
+"MingLiU"=-
+"MS Gothic"=-
+"MS Mincho"=-
+"MS PGothic"=-
+"MS PMincho"=-
+"MS Sans Serif"=-
+"MS Shell Dlg"=-
+"MS Shell Dlg 2"=-
+"MS UI Gothic"=-
+"PMingLiU"=-
+"SimHei"=-
+"SimSun"=-
+"Tahoma"="Arial"
+"Terminal"=-
+"Wingdings"="Winedings"

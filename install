@@ -1,0 +1,34 @@
+#!/bin/sh
+
+echo "WineLocale 0.3 - CJK Launcher for Wine (cli)"
+echo "Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>"
+echo "Licensed under the GNU General Public License"
+echo "<http://www.gnu.org/copyleft/gpl.html>"
+echo "Installing ..."
+if [ -e "/usr/local/share/wineloc" ]; then
+	echo "Removing old wineloc install ..."
+	sudo rm -rf /usr/local/share/wineloc
+fi
+echo "Creating /usr/local/share/wineloc"
+sudo mkdir /usr/local/share/wineloc
+echo "Installing common files ..."
+sudo cp -r ./share/* /usr/local/share/wineloc/
+sudo cp -r INSTALL /usr/local/share/wineloc/
+sudo cp -r LICENSE /usr/local/share/wineloc/
+sudo cp -r uninstall /usr/local/share/wineloc/
+if [ -e "~/.wineloc" ]; then
+	echo "~/.wineloc exists"
+else
+	echo "Creating ~/.wineloc"
+	mkdir ~/.wineloc
+fi
+echo "Installing common files ..."
+cp -r ./user/* ~/.wineloc/
+if [ -e "/usr/local/bin/wineloc" ]; then
+	echo "Removing old link ..."
+	sudo rm /usr/local/bin/wineloc
+fi
+echo "Creating link ..."
+sudo ln -s /usr/local/share/wineloc/wineloc /usr/local/bin/wineloc
+echo "All done!"
+echo "Run 'wineloc' for information and usage instructions"

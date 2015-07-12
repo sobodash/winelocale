@@ -1,0 +1,18 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="Batang"
+"Batang"="Batang"
+"BatangChe"="BatangChe"
+"Dotum"="Dotum"
+"DotumChe"="DotumChe"
+"Fixedsys"="Batang"
+"MS Sans Serif"="Batang"
+"MS Shell Dlg"="Batang"
+"MS Shell Dlg 2"="Batang"
+"Tahoma"="Arial Unicode MS"
+"Terminal"="Batang"
+"Wingdings"="Winedings"

@@ -1,0 +1,153 @@
+#!/bin/sh
+
+# Where WineLocale is installed
+WLOCSHARE=/usr/local/share/wineloc
+# Where the user folder resides
+WLOCHOME=~/.wineloc
+
+echo "WineLocale 0.3 - CJK Launcher for Wine (cli)"
+
+help()
+{
+  cat <<HELP
+Copyright (c) 2007 Derrick Sobodash
+Licensed under the GNU General Public License
+Usage: wineloc [-l Locale] [-f Font] [-o] executable [args ...]
+
+ -h Display help (this screen)
+
+ -l Locale options:
+    ja_JP - Japanese (Shift-JIS)
+    ko_KR - Korean (EUC-KR)
+    zh_CN - Chinese Simplified (GB2312)
+    zh_TW - Chinese Traditional (Big5)
+
+ -f Font settings:
+    common - Relies on default i18n fonts from Ubuntu (default)
+    win    - Uses Windows fonts, see INSTALL
+
+ -o Enable DLL overrides
+HELP
+  exit 0
+}
+
+while [ -n "$1" ]; do
+case $1 in
+	-h) help;shift 1;; # function help is called
+	-o) override=1;shift 1;; # variable opt_f is set
+	-l) loc=$2;shift 2;; # -l takes an argument -> shift by 2
+	-f) font=$2;shift 2;; # -l takes an argument -> shift by 2
+	--) shift;break;; # end of options
+	-*) echo "error: no such option $1. -h for help";exit 1;;
+	*)  break;;
+esac
+done
+
+# Make sure an argument executable is present
+if [ -z "$1" ]; then
+	help
+	exit 0
+fi
+
+# If loc is undefined set it to null
+if [ -z "$loc" ]; then
+	loc="null"
+# Otherwise, make sure it's a CJK one from our list
+elif [ $loc != "ja_JP" ] &&
+     [ $loc != "ko_KR" ] &&
+     [ $loc != "zh_CN" ] && [ $loc != "zh_SG" ] &&
+     [ $loc != "zh_TW" ] && [ $loc != "zh_HK" ] &&
+     [ $loc != "null" ]; then
+	echo "Error: Specified locale is not supported"
+	echo "Try running `wineloc -h` for help with usage syntax"
+	exit 0
+fi
+
+if [ -e "$1" ]; then
+	echo "lele" >/dev/null
+else
+	echo "Error: Specified file '$1' not found"
+	exit 0
+fi
+
+# If they used zh_HK or zh_SG, kick them to ones that actually matter
+# Old Windows applications don't even differentiate for font purposes
+if [ $loc = "zh_SG" ]; then
+	loc="zh_CN"
+elif [ $loc = "zh_HK" ]; then
+	loc="zh_TW"
+fi
+
+# Check if they specified a font schema to use, otherwise use "common"
+if [ -z $font ]; then
+	font="common"
+fi
+
+# Figure out which patch to use based on what exists. Build the string.
+if [ -e "$WLOCHOME/patches/$font/$loc.reg" ]; then
+	LOCFILE="$WLOCHOME/patches/$font/$loc.reg"
+elif [ -e "$WLOCSHARE/patches/$font/$loc.reg" ]; then
+	LOCFILE="$WLOCSHARE/patches/$font/$loc.reg"
+elif [ -e "$WLOCHOME/patches/common/$loc.reg" ]; then
+	echo "Warning: Locale font not found; defaulting to common ..."
+	LOCFILE="$WLOCHOME/patches/common/$loc.reg"
+elif [ -e "$WLOCSHARE/patches/common/$loc.reg" ]; then
+	echo "Warning: Locale font not found; defaulting to common ..."
+	LOCFILE="$WLOCSHARE/patches/common/$loc.reg"
+elif [ $loc = "null" ]; then
+	echo "lele" > /dev/null
+else
+	echo "Error: Unable to find locale in any WineLocale folder"
+	echo "Your installation appears corrupted. You should probably reinstall."
+	exit 0
+fi
+
+if [ $override ]; then
+	echo "Running with DLL overrides ..."
+	wine regedit.exe "$WLOCSHARE/patches/overrides-add.reg"
+fi
+
+echo "Using locale file $LOCFILE ..."
+
+if [ $loc = "ja_JP" ]; then
+	echo "Setting up Japanese Shift-JIS locale ..."
+	LANG=ja_JP.SJIS
+	wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+	wine regedit.exe "$WLOCSHARE/patches/remove/ja_JP.reg"
+elif [ $loc = "ko_KR" ]; then
+	echo "Setting up Korean EUC-KR locale ..."
+        LANG=ko_KR.EUC-KR
+        wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+        wine regedit.exe "$WLOCSHARE/patches/remove/ko_KR.reg"
+elif [ $loc = "zh_CN" ]; then
+	echo "Setting up Chinese (Simplified) GB2312 locale ..."
+        LANG=zh_CN.GB2312
+        wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+        wine regedit.exe "$WLOCSHARE/patches/remove/zh_CN.reg"
+elif [ $loc = "zh_TW" ]; then
+	echo "Setting up Chinese (Traditional) Big5 locale ..."
+        LANG=zh_TW.Big5
+        wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+        wine regedit.exe "$WLOCSHARE/patches/remove/zh_TW.reg"
+elif [ $loc = "null" ]; then
+	echo "Executing application ..."
+        wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+fi
+
+if [ $override ]; then
+	echo "Removing DLL overrides ..."
+	wine regedit.exe "$WLOCSHARE/patches/overrides-rem.reg"
+fi
+

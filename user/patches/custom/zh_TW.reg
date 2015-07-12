@@ -1,0 +1,16 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="AR PL Mingti2L Big5"
+"Fixedsys"="AR PL Mingti2L Big5"
+"MingLiU"="AR PL Mingti2L Big5"
+"MS Sans Serif"="AR PL Mingti2L Big5"
+"MS Shell Dlg"="AR PL Mingti2L Big5"
+"MS Shell Dlg 2"="AR PL Mingti2L Big5"
+"PMingLiU"="AR PL Mingti2L Big5"
+"Tahoma"="Vera Sans YuanTi"
+"Terminal"="AR PL Mingti2L Big5"
+"Wingdings"="Winedings"

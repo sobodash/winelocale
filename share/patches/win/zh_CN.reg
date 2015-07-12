@@ -1,0 +1,16 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"System"="MS Shell Dlg"
+
+[HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
+"Arial"="SimSun"
+"Fixedsys"="SimSun"
+"MS Sans Serif"="SimSun"
+"MS Shell Dlg"="SimSun"
+"MS Shell Dlg 2"="SimSun"
+"SimHei"="SimHei"
+"SimSun"="SimSun"
+"Tahoma"="Arial Unicode MS"
+"Terminal"="SimSun"
+"Wingdings"="Winedings"
