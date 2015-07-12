@@ -5,7 +5,7 @@ WLOCSHARE=/usr/local/share/wineloc
 # Where the user folder resides
 WLOCHOME=~/.wineloc
 
-echo "WineLocale 0.3 - CJK Launcher for Wine (cli)"
+echo "WineLocale 0.31 - CJK Launcher for Wine (cli)"
 
 help()
 {
@@ -17,6 +17,7 @@ Usage: wineloc [-l Locale] [-f Font] [-o] executable [args ...]
  -h Display help (this screen)
 
  -l Locale options:
+    he_IL - Hebrew (ISO-8859-8)
     ja_JP - Japanese (Shift-JIS)
     ko_KR - Korean (EUC-KR)
     zh_CN - Chinese Simplified (GB2312)
@@ -53,7 +54,8 @@ fi
 if [ -z "$loc" ]; then
 	loc="null"
 # Otherwise, make sure it's a CJK one from our list
-elif [ $loc != "ja_JP" ] &&
+elif [ $loc != "he_IL" ] &&
+     [ $loc != "ja_JP" ] &&
      [ $loc != "ko_KR" ] &&
      [ $loc != "zh_CN" ] && [ $loc != "zh_SG" ] &&
      [ $loc != "zh_TW" ] && [ $loc != "zh_HK" ] &&
@@ -109,7 +111,15 @@ fi
 
 echo "Using locale file $LOCFILE ..."
 
-if [ $loc = "ja_JP" ]; then
+if [ $loc = "he_IL" ]; then
+	echo "Setting up Hebrew ISO-8859-8 locale ..."
+	LANG=he_IL.ISO-8859-8
+	wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+	wine regedit.exe "$WLOCSHARE/patches/remove/he_IL.reg"
+elif [ $loc = "ja_JP" ]; then
 	echo "Setting up Japanese Shift-JIS locale ..."
 	LANG=ja_JP.SJIS
 	wine regedit.exe "$LOCFILE"
