@@ -1,0 +1,49 @@
+
+
+WineLocale 0.41 - CJK Launcher for Wine (cli)
+Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>
+Licensed under the GNU General Public License
+<http://www.gnu.org/copyleft/gpl.html>
+
+
+---
+
+ 0.41 - July 2, 2007
+       Fixed support for Chinese Simplified, Traditional and Japanese on
+       Feisty. Installation instructions have changed, so please read them
+       again. Of especial importance, three lines have changed in the
+       /var/lib/locales/supported.d/ja and /var/lib/locales/supported.d/zh:
+       * 'ja_JP.SJIS SJIS' is now 'ja_JP SJIS'
+       * 'zh_CN.GB2312 GB2312' is now 'zh_CN GB2312'
+       * 'zh_TW.Big5 Big5' is now 'zh_TW Big5'
+
+---
+
+ 0.4 - April 19, 2007
+       Fixed support for Hebrew
+       Added support for Arabic
+       Added support for Greek
+       Added support for Russian/Ukrainian
+
+---
+
+ 0.31- April 12, 2007
+       Added support for Hebrew (thanks gbesso for font info)
+
+---
+
+ 0.3 - March 13, 2007
+       Initial public release
+       Rewrote the script to be DASH compatible
+       Added support for Japanese
+       Added support for Korean
+       Added support for Chinese (Simplified)
+       Added support for Chinese (Traditional)
+
+---
+
+
+
+
+
+

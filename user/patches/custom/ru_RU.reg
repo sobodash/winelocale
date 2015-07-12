@@ -1,0 +1,6 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"MS Sans Serif"="Arial"
+"MS Shell Dlg"="Arial"
+"System"="MS Shell Dlg"

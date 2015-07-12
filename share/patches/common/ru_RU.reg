@@ -1,0 +1,6 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"MS Sans Serif"="DejaVu Sans"
+"MS Shell Dlg"="DejaVu Sans"
+"System"="MS Shell Dlg"

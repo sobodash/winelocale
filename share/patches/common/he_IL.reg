@@ -1,6 +1,8 @@
 REGEDIT4
 
 [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"MS Sans Serif"="DejaVu Sans"
+"MS Shell Dlg"="DejaVu Sans"
 "System"="MS Shell Dlg"
 
 [HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
@@ -10,9 +12,6 @@ REGEDIT4
 "Fixedsys"="Miriam Mono CLM"
 "Miriam"="Miriam CLM"
 "Miriam Fixed"="Miriam Mono CLM"
-"MS Sans Serif"="David CLM"
-"MS Shell Dlg"="David CLM"
-"MS Shell Dlg 2"="David CLM"
 "Narkisim"="Nachlieli CLM"
 "Tahoma"="David CLM"
 "Terminal"="Miriam Mono CLM"

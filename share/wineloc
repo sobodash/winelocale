@@ -5,7 +5,7 @@ WLOCSHARE=/usr/local/share/wineloc
 # Where the user folder resides
 WLOCHOME=~/.wineloc
 
-echo "WineLocale 0.31 - CJK Launcher for Wine (cli)"
+echo "WineLocale 0.41 - CJK Launcher for Wine (cli)"
 
 help()
 {
@@ -17,9 +17,12 @@ Usage: wineloc [-l Locale] [-f Font] [-o] executable [args ...]
  -h Display help (this screen)
 
  -l Locale options:
+    ar    - Arabic (ISO-8859-6)
+    el_GR - Greek (ISO-8859-7)
     he_IL - Hebrew (ISO-8859-8)
     ja_JP - Japanese (Shift-JIS)
     ko_KR - Korean (EUC-KR)
+    ru_RU - Russian (ISO-8859-5)
     zh_CN - Chinese Simplified (GB2312)
     zh_TW - Chinese Traditional (Big5)
 
@@ -54,11 +57,35 @@ fi
 if [ -z "$loc" ]; then
 	loc="null"
 # Otherwise, make sure it's a CJK one from our list
-elif [ $loc != "he_IL" ] &&
-     [ $loc != "ja_JP" ] &&
-     [ $loc != "ko_KR" ] &&
-     [ $loc != "zh_CN" ] && [ $loc != "zh_SG" ] &&
-     [ $loc != "zh_TW" ] && [ $loc != "zh_HK" ] &&
+elif [ $loc != "ar" ]    && # Arabic
+     [ $loc != "ar_DZ" ] && # Arabic (Algeria)
+     [ $loc != "ar_BH" ] && # Arabic (Bahrain)
+     [ $loc != "ar_EG" ] && # Arabic (Egypt)
+     [ $loc != "ar_IQ" ] && # Arabic (Iraq)
+     [ $loc != "ar_JO" ] && # Arabic (Jordan)
+     [ $loc != "ar_KW" ] && # Arabic (Kuwait)
+     [ $loc != "ar_LB" ] && # Arabic (Lebanon)
+     [ $loc != "ar_LY" ] && # Arabic (Libya)
+     [ $loc != "ar_MA" ] && # Arabic (Morocco)
+     [ $loc != "ar_OM" ] && # Arabic (Oman)
+     [ $loc != "ar_QA" ] && # Arabic (Qatar)
+     [ $loc != "ar_SA" ] && # Arabic (Saudi Arabia)
+     [ $loc != "ar_SD" ] && # Arabic (Sudan)
+     [ $loc != "ar_SY" ] && # Arabic (Syria)
+     [ $loc != "ar_TN" ] && # Arabic (Tunisia)
+     [ $loc != "ar_AE" ] && # Arabic (Uae)
+     [ $loc != "ar_YE" ] && # Arabic (Yemen)
+     [ $loc != "el_GR" ] && # Greek
+     [ $loc != "he_IL" ] && # Hebrew
+     [ $loc != "ja_JP" ] && # Japanese
+     [ $loc != "ko_KR" ] && # Korean
+     [ $loc != "ru_RU" ] && # Russian
+     [ $loc != "ru_UA" ] && # Russian (Ukraine)
+     [ $loc != "zh_CN" ] && # Chinese (Simplified)
+     [ $loc != "zh_HK" ] && # Chinese (Hong Kong)
+     [ $loc != "zh_MO" ] && # Chinese (Macau)
+     [ $loc != "zh_SG" ] && # Chinese (Singapore)
+     [ $loc != "zh_TW" ] && # Chinese (Traditional)
      [ $loc != "null" ]; then
 	echo "Error: Specified locale is not supported"
 	echo "Try running `wineloc -h` for help with usage syntax"
@@ -74,12 +101,18 @@ fi
 
 # If they used zh_HK or zh_SG, kick them to ones that actually matter
 # Old Windows applications don't even differentiate for font purposes
-if [ $loc = "zh_SG" ]; then
+if   [ $loc = "ar" ]; then
+	loc="ar_SA"
+elif [ $loc = "ru_UA" ]; then
+	loc="ru_RU"
+elif [ $loc = "zh_SG" ]; then
 	loc="zh_CN"
+elif [ $loc = "zh_MO" ]; then
+	loc="zh_TW"
 elif [ $loc = "zh_HK" ]; then
 	loc="zh_TW"
 fi
-
+echo $loc
 # Check if they specified a font schema to use, otherwise use "common"
 if [ -z $font ]; then
 	font="common"
@@ -111,7 +144,26 @@ fi
 
 echo "Using locale file $LOCFILE ..."
 
-if [ $loc = "he_IL" ]; then
+# Arabic Settings
+if   [ $loc = "ar_SA" ]; then
+	echo "Setting up Arabic ISO-8859-6 locale ..."
+	LANG=ar_SA.ISO-8859-6
+	wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+	wine regedit.exe "$WLOCSHARE/patches/remove/ar_SA.reg"
+# Greek Settings
+elif [ $loc = "el_GR" ]; then
+	echo "Setting up Greek ISO-8859-7 locale ..."
+	LANG=el_GR.ISO-8859-7
+	wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+	wine regedit.exe "$WLOCSHARE/patches/remove/el_GR.reg"
+# Hebrew Settings
+elif [ $loc = "he_IL" ]; then
 	echo "Setting up Hebrew ISO-8859-8 locale ..."
 	LANG=he_IL.ISO-8859-8
 	wine regedit.exe "$LOCFILE"
@@ -119,14 +171,16 @@ if [ $loc = "he_IL" ]; then
 	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
 	echo "Restoring old Wine locale settings"
 	wine regedit.exe "$WLOCSHARE/patches/remove/he_IL.reg"
+# Japanese Settings
 elif [ $loc = "ja_JP" ]; then
 	echo "Setting up Japanese Shift-JIS locale ..."
-	LANG=ja_JP.SJIS
+	LANG=ja_JP
 	wine regedit.exe "$LOCFILE"
 	echo "Executing application ..."
 	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
 	echo "Restoring old Wine locale settings"
 	wine regedit.exe "$WLOCSHARE/patches/remove/ja_JP.reg"
+# Korean Settings
 elif [ $loc = "ko_KR" ]; then
 	echo "Setting up Korean EUC-KR locale ..."
         LANG=ko_KR.EUC-KR
@@ -135,17 +189,28 @@ elif [ $loc = "ko_KR" ]; then
 	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
 	echo "Restoring old Wine locale settings"
         wine regedit.exe "$WLOCSHARE/patches/remove/ko_KR.reg"
+# Russian Settings
+elif [ $loc = "ru_RU" ]; then
+	echo "Setting up Russian ISO-8859-5 locale ..."
+        LANG=ru_RU.ISO-8859-5
+        wine regedit.exe "$LOCFILE"
+	echo "Executing application ..."
+	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+	echo "Restoring old Wine locale settings"
+        wine regedit.exe "$WLOCSHARE/patches/remove/ru_RU.reg"
+# Chinese (Simplified) Settings
 elif [ $loc = "zh_CN" ]; then
 	echo "Setting up Chinese (Simplified) GB2312 locale ..."
-        LANG=zh_CN.GB2312
+        LANG=zh_CN
         wine regedit.exe "$LOCFILE"
 	echo "Executing application ..."
 	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
 	echo "Restoring old Wine locale settings"
         wine regedit.exe "$WLOCSHARE/patches/remove/zh_CN.reg"
+# Chinese (Traditional) Settings
 elif [ $loc = "zh_TW" ]; then
 	echo "Setting up Chinese (Traditional) Big5 locale ..."
-        LANG=zh_TW.Big5
+        LANG=zh_TW
         wine regedit.exe "$LOCFILE"
 	echo "Executing application ..."
 	wine "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9"

@@ -1,0 +1,25 @@
+
+
+WineLocale 0.41 - CJK Launcher for Wine (cli)
+Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>
+Licensed under the GNU General Public License
+<http://www.gnu.org/copyleft/gpl.html>
+
+
+---
+
+ 1. Get accurate fonts for Arabic, Russian and Greek. If you use these locales
+    in Linux, please write me and tell me what their normal UI fonts are.
+
+ 2. Add support for Uyghur, Thai, Tibetan, Malay and other languages.
+
+ 3. Should I add further support to let users actually specify unique locales
+    instead of pigeon-holing them into the nearest match? Users, please reply!
+
+---
+
+
+
+
+
+

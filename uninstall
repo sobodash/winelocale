@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "WineLocale 0.31 - CJK Launcher for Wine (cli)"
+echo "WineLocale 0.41 - CJK Launcher for Wine (cli)"
 echo "Copyright (c) 2007 Derrick Sobodash <http://www.cinnamonpirate.com/>"
 echo "Licensed under the GNU General Public License"
 echo "<http://www.gnu.org/copyleft/gpl.html>"

@@ -1,6 +1,8 @@
 REGEDIT4
 
 [HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"MS Sans Serif"="Tahoma"
+"MS Shell Dlg"="Tahoma"
 "System"="MS Shell Dlg"
 
 [HKEY_USERS\S-1-5-4\Software\Wine\Fonts\Replacements]
